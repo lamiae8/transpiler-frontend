@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+
+
+.btns{
+    text-align: center;
+}
+
+.panel{
+   width: 90%;
+   margin: auto;
+   border-radius: 25px;
+}
+.panelchild{
+    border-radius: 25px;
+   
+}
+
+.textarea{
+    border: solid 40px rgb(31, 41, 55);
+    font-size: 20px;
+   
+}
+
+
+/* daisyui */
+:root {
+    --my-color: #fff;
+    /* or any other variables/style */
+  }
+  [data-theme='dark'] {
+    --my-color: #000;
+  }
+  [data-theme='pink'] {
+    --my-color: #ffabc8;
+  }
+
+
+  html {
+    background-color: var(--my-color);
+  }
