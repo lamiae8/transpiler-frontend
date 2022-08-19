@@ -14,15 +14,18 @@
    width: 90%;
    margin: auto;
    border-radius: 25px;
+   height: 455px;
 }
 .panelchild{
     border-radius: 25px;
    
 }
-
+.title{
+  font-family: 'Dancing Script', cursive;
+}
 .textarea{
-    border: solid 40px rgb(31, 41, 55);
-    font-size: 20px;
+    border: solid 20px transparent; 
+    font-size: 15px;
    
 }
 
