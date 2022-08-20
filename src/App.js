@@ -8,8 +8,6 @@ import { Outlet } from 'react-router-dom';
 
 import Home from "./component/Home";
 import About from './component/about';
-import Text from "./component/Text";
-import File from './component/File';
 import Deploy from './component/deploy';
 import Navbar from "./component/navbar";
 
@@ -103,7 +101,7 @@ const App = () => {
         <Route >
           <Route exact default path="/" element={<Home />} />
           <Route exact path="/about" element={< About />} />
-          <Route exact path="/file" element={<File />} />
+        
           <Route exact path="/deploy" element={<Deploy />} />
         </Route>
       </Routes>
