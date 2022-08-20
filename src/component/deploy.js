@@ -8,7 +8,8 @@ function About(){
     return(
         <>
         
-        <h1>Deploy </h1>
+        <h1>Deploy page  </h1>
+       
        
         
         </>
