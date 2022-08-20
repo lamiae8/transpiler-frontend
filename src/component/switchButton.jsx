@@ -23,7 +23,7 @@ const SwitchButton = (props) => {
 
         <button className={switchtype==='file' ? BUTTON_STYLING_FOCUS : BUTTON_STYLING}  onClick={(event)=>{switchToTextOrFile(event,"file")}} >   
           {" "} 
-          Transpile a file <br /> <span className="text-xs">.pdf .doc</span>
+          Transpile a File <br /> <span className="text-xs">(.alfa)</span>
         </button>
 
       </div>

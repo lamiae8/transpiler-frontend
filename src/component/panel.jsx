@@ -42,7 +42,7 @@ const panel = (props) => {
           {
             props.switchType === 'file'
             &&
-            <div className="cursor-pointer ml-3 mr-3 w-5/6 h-full panelchild border-2 border border-sky-600 rounded-3xl">
+            <div className=" cursor-pointer ml-3 mr-3 w-5/6 h-full panelchild border-2 border border-sky-600 rounded-3xl">
               <DragDropFile />
             </div>
             // <div className="w-5/6 flex panelchild mr-3 ml-3 border-2 border-sky-600">
