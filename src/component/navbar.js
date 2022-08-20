@@ -6,21 +6,20 @@ import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 import dark from '../images/icons8-new-moon-48.png';
 import light from '../images/icons8-sun-64.png';
 
-const navbar =() => {
- const navigation = [
+const navbar = () => {
+  const navigation = [
     { name: 'AlfaToSol', href: '/', current: true },
-    { name: 'About', href: '#', current: false },
-    { name: 'Transpile', href: '#', current: false },
-    { name: 'Deploy', href: '#', current: false },
+    { name: 'About', href: '/about', current: false },
+    { name: 'Deploy', href: '/deploy', current: false },
   ]
   function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
   }
 
-return(
+  return (
     <>
-   
-   <Disclosure as="nav" className=" border border-b-1 border-t-0 border-r-0 border-l-0 " data-theme="" >
+
+      <Disclosure as="nav" className=" border border-b-1 border-t-0 border-r-0 border-l-0 " data-theme="" >
         {({ open }) => (
           <>
             <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
@@ -56,7 +55,7 @@ return(
                           key={item.name}
                           href={item.href}
                           className={classNames(
-                            item.current ? 'bg-gray-800 text-white' : 'text-gray-500 hover:bg-gray-700 hover:text-white',
+                            item.current ? 'border-b-2 border-indigo-600 rounded-none' : 'text-gray-500 hover:bg-indigo-500 hover:text-white',
                             'px-3 py-2 rounded-md text-sm font-medium'
                           )}
                           aria-current={item.current ? 'page' : undefined}
@@ -64,25 +63,19 @@ return(
                           {item.name}
                         </a>
                       ))}
-                    </div>
-                  </div>
+
+
+
+                    </div></div>
                 </div>
                 <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-               
-                {/* 
-                  <button
-                    type="button"
-                    className="bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
-                  >
-                    <span className="sr-only">View notifications</span>
-                    <BellIcon className="h-6 w-6" aria-hidden="true" />
-                  </button>
-  */}
 
-  {/* WALLET */}
 
-                  <button  className=" py-2 px-4 rounded bg-gradient-to-r from-blue-800  to-pink-400  text-white font-bold text-sm">
-                  Connect Wallet
+
+                  {/* WALLET */}
+
+                  <button className=" py-2 px-4 rounded bg-gradient-to-r from-blue-800  to-pink-400  text-white font-bold text-sm">
+                    Connect Wallet
                   </button>
 
                   {/* Profile dropdown 
@@ -143,11 +136,11 @@ return(
                   */}
                   <img src={dark} className="w-6 h-6 ml-2" />
                   <button data-toggle-theme="night,cupcake" data-act-class="ACTIVECLASS" className="mt-1" ><input type="checkbox" className="toggle toggle-primary"></input></button>
-                  <img src={light} className="w-6 h-6 "/>
+                  <img src={light} className="w-6 h-6 " />
                 </div>
               </div>
             </div>
-  
+
             <Disclosure.Panel className="sm:hidden">
               <div className="px-2 pt-2 pb-3 space-y-1">
                 {navigation.map((item) => (
@@ -169,12 +162,12 @@ return(
           </>
         )}
       </Disclosure>
-    
-    
-    
-    
+
+
+
+
     </>
-);
+  );
 
 
 
