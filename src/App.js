@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { themeChange } from 'theme-change';
 import { Routes, Route } from "react-router-dom";
 import { Outlet } from 'react-router-dom';
-
+import axios from 'axios';
 
 
 import Home from "./component/Home";
@@ -20,12 +20,13 @@ import wallet from './images/icons8-metamask-logo-48.png';
 
 
 const App = () => {
-
+  
   {/* change dark and light mode */ }
   useEffect(() => {
     themeChange(true)
 
   }, [])
+  
 
 
   { /* dark & light mode toogle fct*/ }

@@ -1,4 +1,5 @@
 import React from "react";
+import axios from 'axios';
 import fleche from "../images/icons8-chevron-droit-64.png";
 import textIcon from "../images/icons8-google-traduction-64.png";
 import contractIcon from "../images/smart-contract.png";
@@ -7,8 +8,8 @@ import copyIcon from '../images/icons8-copy-64.png';
 import downloadIcon from '../images/icons8-downloading-updates-64.png';
 import deployIcon from '../images/icons8-blockchain-technology-64.png';
 
-
 const panel = (props) => {
+  
   return (
     <>
       <div className=" panel  border-2 border-sky-600   ">
@@ -35,7 +36,7 @@ const panel = (props) => {
               <textarea
                 className="w-full textarea  resize-none  panelchild "
                 placeholder="Copy and past your code here..."
-              ></textarea>
+                ></textarea>
             </div>
           }
 
@@ -44,7 +45,9 @@ const panel = (props) => {
             &&
             <div className=" cursor-pointer ml-3 mr-3 w-5/6 h-full panelchild border-2 border border-sky-600 rounded-3xl">
               <DragDropFile />
+              
             </div>
+            
             // <div className="w-5/6 flex panelchild mr-3 ml-3 border-2 border-sky-600">
             //     <textarea
             //     className="w-full textarea  resize-none  panelchild "
