@@ -40,9 +40,9 @@ const Navbar = () => {
 
   };
   checkMetamaskAvailability();
+ 
 }, []);
 const connectWallet = async () => {
-  { isConnected ? alert("connected with adress: " + accountAddress) : console.log("not connected")}
   try {
     if (!ethereum) {
       sethaveMetamask(false);
@@ -52,12 +52,13 @@ const connectWallet = async () => {
     });
     let balance = await provider.getBalance(accounts[0]);
     let bal = ethers.utils.formatEther(balance);
-
+    
     setAccountAddress(accounts[0]);
     setAccountBalance(bal);
     setIsConnected(true);
-    //{ isConnected ? alert("connected with adress: " + accountAddress) : console.log("not connected")}
-
+    
+   // setIsConnected(prevConnected=>{!prevConnected? console.log("connected with adress: " + accountAddress) : console.log("not connected"); return !prevConnected});
+    { isConnected ? alert("connected with adress: " + accountAddress) : console.log("not connected")}
   } catch (error) {
     setIsConnected(false);
   }
