@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import fleche from "../images/icons8-chevron-droit-64.png";
 import textIcon from "../images/icons8-google-traduction-64.png";
@@ -8,10 +8,40 @@ import copyIcon from '../images/icons8-copy-64.png';
 import downloadIcon from '../images/icons8-downloading-updates-64.png';
 import deployIcon from '../images/icons8-blockchain-technology-64.png';
 
-const panel = (props) => {
+
+
+
+
+function Panel(props) {
+  const [ result, setResult ] = useState('');
+  const [ text, setText ] = useState('');
+ 
+ const transpileText = event => {
+   // 👇️ access textarea value
+   setResult((PrevResult)=> PrevResult);
+    setText(event.target.value);
   
+   
+ if({text}!==''){
+  axios.post("http://localhost:8080/transpileText", {text})
+       .then(res => { // then print response status
+       setResult(res.data);
+    // console.log(result)
+    
+  })
+       .catch(err => {
+    console.error(err); 
+      });
+   
+    };
+
+ };
+  
+  
+ // console.log(result);
   return (
     <>
+    
       <div className=" panel  border-2 border-sky-600   ">
         <div className="flex title">
           <img src={textIcon} alt="" className="ml-14 h-14" />
@@ -36,6 +66,9 @@ const panel = (props) => {
               <textarea
                 className="w-full textarea  resize-none  panelchild "
                 placeholder="Copy and past your code here..."
+          
+                onChange={transpileText}
+                
                 ></textarea>
             </div>
           }
@@ -48,12 +81,7 @@ const panel = (props) => {
               
             </div>
             
-            // <div className="w-5/6 flex panelchild mr-3 ml-3 border-2 border-sky-600">
-            //     <textarea
-            //     className="w-full textarea  resize-none  panelchild "
-            //     placeholder="file bruv"
-            //     ></textarea>
-            // </div>
+         
           }
 
 
@@ -62,7 +90,7 @@ const panel = (props) => {
 
           <div class="w-5/6 rounded-3xl  mr-3 ml-3 border-2 border-sky-600 ">
             <div className=" flex mb-4 h-80 ">
-              <textarea id="idTextarea" className=" w-full textarea rounded-t-3xl  rounded-b-none    resize-none  "></textarea></div>
+              <textarea readOnly value={result} id="idTextarea" className=" w-full textarea rounded-t-3xl  rounded-b-none    resize-none  "></textarea></div>
             <div className="flex">
               {
                 props.switchType === 'text'
@@ -92,4 +120,4 @@ const panel = (props) => {
   );
 };
 
-export default panel;
+export default Panel;

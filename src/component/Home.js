@@ -1,11 +1,13 @@
 import {React, useEffect,useState} from 'react';
-import { Outlet } from 'react-router-dom';
-import Navbar from './navbar';
-import SwitchButton from './switchButton';
-import Panel from './panel';
+
+
+import SwitchButton from './SwitchButton';
+import Panel from './Panel';
+
 
 
 import fleche from '../images/icons8-chevron-droit-64.png';
+
 
 function Home(){
 
@@ -22,6 +24,9 @@ function Home(){
     useEffect(() => {
     
     });
+
+
+    // wallet
     return(
         <>
        
@@ -29,6 +34,7 @@ function Home(){
         <SwitchButton switchToTextOrFile={switchToTextOrFile} />
 
         <Panel switchType={switchType} />
+     
 
       
         

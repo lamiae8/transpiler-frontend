@@ -1,14 +1,17 @@
-import React from "react";
-import { Fragment } from 'react';
-import { Disclosure, Menu, Transition } from '@headlessui/react';
-import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline';
-import {Link, NavLink } from "react-router-dom";
+import {React, useEffect, useState} from "react";
+import { Disclosure} from '@headlessui/react';
+import { MenuIcon, XIcon } from '@heroicons/react/outline';
+import {Link} from "react-router-dom";
+
+import { ethers } from 'ethers';
+
 
 import dark from '../images/icons8-new-moon-48.png';
 import light from '../images/icons8-sun-64.png';
 import logo from '../images/Untitled design.png';
 
-const navbar = () => {
+
+const Navbar = () => {
   const navigation = [
     { name: 'AlfaToSol', href: '/', current: false },
     { name: 'About', href: '/about', current: false },
@@ -17,6 +20,48 @@ const navbar = () => {
   function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
   }
+  
+  // wallet
+  const [haveMetamask, sethaveMetamask] = useState(true);
+  const [accountAddress, setAccountAddress] = useState('');
+  const [accountBalance, setAccountBalance] = useState('');
+  const [isConnected, setIsConnected] = useState(false);
+  const { ethereum } = window;
+  const provider = new ethers.providers.Web3Provider(window.ethereum);
+  useEffect(() => {
+    const { ethereum } = window;
+  const checkMetamaskAvailability = async () => {
+      if (!ethereum) {
+          sethaveMetamask(false);
+          console.log('not found')
+      }
+      sethaveMetamask(true);
+    console.log('found')
+
+  };
+  checkMetamaskAvailability();
+}, []);
+const connectWallet = async () => {
+  { isConnected ? alert("connected with adress: " + accountAddress) : console.log("not connected")}
+  try {
+    if (!ethereum) {
+      sethaveMetamask(false);
+    }
+    const accounts = await ethereum.request({
+      method: 'eth_requestAccounts',
+    });
+    let balance = await provider.getBalance(accounts[0]);
+    let bal = ethers.utils.formatEther(balance);
+
+    setAccountAddress(accounts[0]);
+    setAccountBalance(bal);
+    setIsConnected(true);
+    //{ isConnected ? alert("connected with adress: " + accountAddress) : console.log("not connected")}
+
+  } catch (error) {
+    setIsConnected(false);
+  }
+};
 
   return (
     <>
@@ -78,69 +123,13 @@ const navbar = () => {
 
                   {/* WALLET */}
 
-                  <button className=" py-2 px-4 rounded bg-gradient-to-r from-blue-800  to-pink-400  text-white font-bold text-sm">
+                  <button onClick={connectWallet} className=" py-2 px-4 rounded bg-gradient-to-r from-blue-800  to-pink-400  text-white font-bold text-sm">
                     Connect Wallet
                   </button>
 
-                  {/* Profile dropdown 
-                  <Menu as="div" className="ml-3 relative">
-                    <div>
-                      <Menu.Button className="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
-                        <span className="sr-only">Open user menu</span>
-                        <img
-                          className="h-8 w-8 rounded-full"
-                          src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                          alt=""
-                        />
-                      </Menu.Button>
-                    </div>
-                    <Transition
-                      as={Fragment}
-                      enter="transition ease-out duration-100"
-                      enterFrom="transform opacity-0 scale-95"
-                      enterTo="transform opacity-100 scale-100"
-                      leave="transition ease-in duration-75"
-                      leaveFrom="transform opacity-100 scale-100"
-                      leaveTo="transform opacity-0 scale-95"
-                    >
-                      <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
-                        <Menu.Item>
-                          {({ active }) => (
-                            <a
-                              href="#"
-                              className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
-                            >
-                              Your Profile
-                            </a>
-                          )}
-                        </Menu.Item>
-                        <Menu.Item>
-                          {({ active }) => (
-                            <a
-                              href="#"
-                              className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
-                            >
-                              Settings
-                            </a>
-                          )}
-                        </Menu.Item>
-                        <Menu.Item>
-                          {({ active }) => (
-                            <a
-                              href="#"
-                              className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
-                            >
-                              Sign out
-                            </a>
-                          )}
-                        </Menu.Item>
-                      </Menu.Items>
-                    </Transition>
-                  </Menu>
-                  */}
-                  <img src={dark} className="w-6 h-6 ml-2" />
+                  <img src={dark} alt="" className="w-6 h-6 ml-2" />
                   <button data-toggle-theme="night,cupcake" data-act-class="ACTIVECLASS" className="mt-1" ><input type="checkbox" className="toggle toggle-primary"></input></button>
-                  <img src={light} className="w-6 h-6 " />
+                  <img src={light} alt="" className="w-6 h-6 " />
                 </div>
               </div>
             </div>
@@ -168,8 +157,6 @@ const navbar = () => {
       </Disclosure>
 
 
-
-
     </>
   );
 
@@ -178,4 +165,4 @@ const navbar = () => {
 
 }
 
-export default navbar;
+export default Navbar;

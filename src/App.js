@@ -3,13 +3,13 @@ import { useEffect } from 'react';
 import { themeChange } from 'theme-change';
 import { Routes, Route } from "react-router-dom";
 import { Outlet } from 'react-router-dom';
-import axios from 'axios';
+
 
 
 import Home from "./component/Home";
-import About from './component/about';
-import Deploy from './component/deploy';
-import Navbar from "./component/navbar";
+import About from './component/About';
+import Deploy from './component/Deploy';
+import Navbar from "./component/Navbar";
 
 
 
@@ -17,6 +17,7 @@ import solImg from './images/icons8-solidity-50.png'
 
 
 import wallet from './images/icons8-metamask-logo-48.png';
+import Wallet from "./component/Wallet";
 
 
 const App = () => {
@@ -104,6 +105,7 @@ const App = () => {
           <Route exact path="/about" element={< About />} />
         
           <Route exact path="/deploy" element={<Deploy />} />
+          <Route exact path="/wallet" element={<Wallet />} />
         </Route>
       </Routes>
 
