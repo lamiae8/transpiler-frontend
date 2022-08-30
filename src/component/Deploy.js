@@ -1,19 +1,11 @@
-import {React, useEffect} from 'react';
+import { React, useEffect } from "react";
 
-function About(){
-
-    useEffect(() => {
-    
-    });
-    return(
-        <>
-        
-        <h1>Deploy page  </h1>
-       
-       
-        
-        </>
-    );
+function About() {
+  useEffect(() => {});
+  return (
+    <>
+      <h1>Deploy page </h1>
+    </>
+  );
 }
 export default About;
-
