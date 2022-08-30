@@ -17,6 +17,7 @@ function Home(){
   const switchToTextOrFile=(value)=>{
     setSwitchType(value)
     console.log(value)
+   
   }
 
   

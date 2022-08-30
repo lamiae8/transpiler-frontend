@@ -13,32 +13,39 @@ import deployIcon from '../images/icons8-blockchain-technology-64.png';
 
 
 function Panel(props) {
-  const [ result, setResult ] = useState('');
+  const [ result, setResult ] = useState();
   const [ text, setText ] = useState('');
  
+ useEffect(() => {
+   // setResult(prevResult=>{!prevResult ? console.log("connected with result: " + result) : console.log("not connected"); return !prevResult});
+    // setText(prevText=>{!prevText ? console.log("connected with text: " + text) : console.log("not connected"); return !prevText});
+   console.log(text, result)
+  }, [result])
+
  const transpileText = event => {
    // 👇️ access textarea value
-   setResult((PrevResult)=> PrevResult);
-    setText(event.target.value);
   
-   
- if({text}!==''){
-  axios.post("http://localhost:8080/transpileText", {text})
-       .then(res => { // then print response status
-       setResult(res.data);
+    setText(event.target.value);
+  //  { !text ? console.log("full: " + {text}) : console.log("empty")}
+  
+ 
+    axios.post("http://localhost:8080/transpileText", {text})
+    .then(res => { // then print response status
+      //   setResult(res.data);
+      setResult(res.data);
     // console.log(result)
+   // setResult(prevResult=>{!prevResult ? console.log("connected with adress: " + result) : console.log("not connected"); return !prevResult});
     
   })
        .catch(err => {
     console.error(err); 
       });
    
-    };
+    
 
  };
   
   
- // console.log(result);
   return (
     <>
     
@@ -90,8 +97,19 @@ function Panel(props) {
 
           <div class="w-5/6 rounded-3xl  mr-3 ml-3 border-2 border-sky-600 ">
             <div className=" flex mb-4 h-80 ">
-              <textarea readOnly value={result} id="idTextarea" className=" w-full textarea rounded-t-3xl  rounded-b-none    resize-none  "></textarea></div>
-            <div className="flex">
+            {
+                props.switchType === 'text'
+                &&
+              <textarea readOnly value={result} id="idTextarea" className=" w-full textarea rounded-t-3xl  rounded-b-none    resize-none  "></textarea>
+            }
+             {
+                props.switchType === 'file'
+                &&
+              <textarea readOnly  id="idTextarea" className=" w-full textarea rounded-t-3xl  rounded-b-none    resize-none  "></textarea>
+            }
+
+          </div>
+           <div className="flex">
               {
                 props.switchType === 'text'
                 &&

@@ -3,8 +3,10 @@ import React, { useState } from "react";
 import { FileUploader } from "react-drag-drop-files";
 import { saveAs } from "file-saver";
 import fileimg from '../images/icons8-fichier-64.png'
+import { data } from "autoprefixer";
 
 
+var y ='';
 const fileTypes = ["alfa"];
 const uploadFile=(File)=>{
   const data = new FormData() ;
@@ -12,12 +14,15 @@ const uploadFile=(File)=>{
   axios.post("http://localhost:8080/uploadFileAPI", data)
       .then(res => { // then print response status
         console.log(res.data)
-        createContract(res.data)  
-      })
+       //createContract(res.data)  
+      y=res.data;       
+       console.log(y);
+    })
 }
 
-const createContract=(data)=> {
-  const blob = new Blob([data], {type: "text/plain;charset=utf-8"});
+const createContract=()=> {
+  console.log("console y " +y)
+  const blob = new Blob([{y}], {type: "text/plain;charset=utf-8"});
   saveAs(blob, "result/output.sol");
 }
 
@@ -38,8 +43,11 @@ function DragDropFile() {
                     </div>
   </>
   return (
+    <>
     <FileUploader  maxSize="4" children={chidrenElem} classes="justify-center items-center w-full" handleChange={handleChange} name="file" types={fileTypes} />
-  );
+  <button onClick={createContract} > download result</button>
+  <div  className="bg-red width:20px"> {y.data}</div>
+   </> );
     
   
 }
