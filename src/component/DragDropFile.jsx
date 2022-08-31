@@ -5,8 +5,8 @@ import { saveAs } from "file-saver";
 import fileimg from "../images/icons8-fichier-64.png";
 import { data } from "autoprefixer";
 
-// const API="http://localhost:8080/"
-const API = "http://18.132.248.130/"; //AWS INSTANCE
+const API="http://localhost:8080/"
+// const API = "http://18.132.248.130/"; //AWS INSTANCE
 var y = "";
 const fileTypes = ["alfa"];
 const uploadFile = (File) => {

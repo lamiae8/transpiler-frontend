@@ -12,8 +12,8 @@ function Panel(props) {
   const [result, setResult] = useState();
   const [text, setText] = useState("");
 
-  // const API="http://localhost:8080/"
-  const API = "http://18.132.248.130/"; //AWS INSTANCE
+  const API="http://localhost:8080/"
+  // const API = "http://18.132.248.130/"; //AWS INSTANCE
 
   useEffect(() => {
     // setResult(prevResult=>{!prevResult ? console.log("connected with result: " + result) : console.log("not connected"); return !prevResult});
