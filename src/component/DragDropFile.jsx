@@ -5,8 +5,8 @@ import { saveAs } from "file-saver";
 import fileimg from "../images/icons8-fichier-64.png";
 import { data } from "autoprefixer";
 
-const API="http://localhost:8080/"
-// const API = "http://18.132.248.130/"; //AWS INSTANCE
+// const API="http://localhost:8080/"
+const API = "http://18.132.248.130/"; //AWS INSTANCE
 var y = "";
 const fileTypes = ["alfa"];
 const uploadFile = (File) => {
@@ -23,7 +23,8 @@ const uploadFile = (File) => {
 
 const createContract = () => {
   console.log("console y " + y);
-  const blob = new Blob([{ y }], { type: "text/plain;charset=utf-8" });
+  const blob = new Blob([ y ] ,{ type: "text/plain;charset=utf-8" });
+  console.log(blob.text())
   saveAs(blob, "result/output.sol");
 };
 
