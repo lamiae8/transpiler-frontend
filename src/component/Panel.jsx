@@ -8,12 +8,16 @@ import copyIcon from "../images/icons8-copy-64.png";
 import downloadIcon from "../images/icons8-downloading-updates-64.png";
 import deployIcon from "../images/icons8-blockchain-technology-64.png";
 
+const createContract = () => {
+ 
+};
+
 function Panel(props) {
   const [result, setResult] = useState();
   const [text, setText] = useState("");
 
-  const API="http://localhost:8080/"
-  // const API = "http://18.132.248.130/"; //AWS INSTANCE
+  //const API="http://localhost:8080/"
+ const API = "http://18.132.248.130/"; //AWS INSTANCE
 
   useEffect(() => {
     // setResult(prevResult=>{!prevResult ? console.log("connected with result: " + result) : console.log("not connected"); return !prevResult});
@@ -98,7 +102,7 @@ function Panel(props) {
 
           {props.switchType === "file" && (
             <div className=" cursor-pointer ml-3 mr-3 w-5/6 h-full panelchild border-2 border border-sky-600 rounded-3xl">
-              <DragDropFile />
+              <DragDropFile createContract={createContract} />
             </div>
           )}
 
@@ -136,7 +140,7 @@ function Panel(props) {
                 </button>
               )}
               {props.switchType === "file" && (
-                <button className=" flex ml-80 w-28 h-8 pl-1 rounded border border-dashed border-sky-600  ">
+                <button onClick={createContract} className=" flex ml-80 w-28 h-8 pl-1 rounded border border-dashed border-sky-600  ">
                   <img src={downloadIcon} alt="" className=" w-7 " /> Download
                 </button>
               )}

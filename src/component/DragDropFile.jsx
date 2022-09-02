@@ -21,6 +21,7 @@ const uploadFile = (File) => {
   });
 };
 
+ 
 const createContract = () => {
   console.log("console y " + y);
   const blob = new Blob([ y ] ,{ type: "text/plain;charset=utf-8" });
@@ -28,7 +29,8 @@ const createContract = () => {
   saveAs(blob, "result/output.sol");
 };
 
-function DragDropFile() {
+
+function DragDropFile(props) {
   const [file, setFile] = useState(null);
   const handleChange = (file) => {
     // console.log(file)
@@ -73,9 +75,9 @@ function DragDropFile() {
         name="file"
         types={fileTypes}
       />
-      <button onClick={createContract}> download result</button>
-      <div className="bg-red width:20px"> {y.data}</div>
-    </>
+     </>
+    
+    
   );
 }
 
