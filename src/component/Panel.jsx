@@ -8,35 +8,31 @@ import copyIcon from "../images/icons8-copy-64.png";
 import downloadIcon from "../images/icons8-downloading-updates-64.png";
 import deployIcon from "../images/icons8-blockchain-technology-64.png";
 
-const createContract = () => {
- 
-};
+
 
 function Panel(props) {
   const [result, setResult] = useState();
   const [text, setText] = useState("");
+  const [clicked, setClicked] = useState(false);
 
+  const createContract = () => {
+ setClicked(true);
+  };
   //const API="http://localhost:8080/"
- const API = "http://18.132.248.130/"; //AWS INSTANCE
+  const API = "http://18.134.130.237/"; //AWS INSTANCE
+
+
 
   useEffect(() => {
-    // setResult(prevResult=>{!prevResult ? console.log("connected with result: " + result) : console.log("not connected"); return !prevResult});
-    // setText(prevText=>{!prevText ? console.log("connected with text: " + text) : console.log("not connected"); return !prevText});
-    // console.log(text, result);
-  }, [result]);
-
-  useEffect(() => {
+   
     if (text) {
       console.log("-----------CHANGED CHANGED-------------");
       axios
         .post(API + "transpileText", { text })
         .then((res) => {
-          // then print response status
-          //   setResult(res.data);
+
           console.log(res.data);
           setResult(res.data);
-          // console.log(result)
-          // setResult(prevResult=>{!prevResult ? console.log("connected with adress: " + result) : console.log("not connected"); return !prevResult});
         })
         .catch((err) => {
           console.error(err);
@@ -46,30 +42,8 @@ function Panel(props) {
     }
   }, [text]);
 
-  // const transpileText = (event) => {
-  //   // if (event.target.value)
-  //   // console.log(event.target.value)
-  //   // 👇️ access textarea value
-  //   // const alfa = event.target.value;
-  //   setText(event.target.value);
-  //   //  { !text ? console.log("full: " + {text}) : console.log("empty")}
-  //   if (text) {
-  //     console.log("-----------CHANGED CHANGED-------------");
-  //     axios
-  //       .post(API + "transpileText", { text })
-  //       .then((res) => {
-  //         // then print response status
-  //         //   setResult(res.data);
-  //         console.log(res.data);
-  //         setResult(res.data);
-  //         // console.log(result)
-  //         // setResult(prevResult=>{!prevResult ? console.log("connected with adress: " + result) : console.log("not connected"); return !prevResult});
-  //       })
-  //       .catch((err) => {
-  //         console.error(err);
-  //       });
-  //   }
-  // };
+console.log('show '+localStorage.getItem('show'))
+
 
   return (
     <>
@@ -87,7 +61,7 @@ function Panel(props) {
           </div>
         </div>
 
-        <div class="flex h-96 ">
+        <div className="flex h-96 ">
           {/* panel to show */}
           {props.switchType === "text" && (
             <div className="w-5/6 flex panelchild mr-3 ml-3 border-2 border-sky-600">
@@ -96,34 +70,33 @@ function Panel(props) {
                 placeholder="Copy and past your code here..."
                 // onChange={transpileText}
                 onChange={(event) => setText(event.target.value)}
-              ></textarea>
+                ></textarea>
             </div>
           )}
 
           {props.switchType === "file" && (
             <div className=" cursor-pointer ml-3 mr-3 w-5/6 h-full panelchild border-2 border border-sky-600 rounded-3xl">
-              <DragDropFile createContract={createContract} />
+              <DragDropFile clicked={clicked}  />
             </div>
           )}
 
-          <img class="w-1/6 place-self-center h-8 w-12" src={fleche} />
+          <img className="w-1/6 place-self-center h-8 w-12" src={fleche} />
 
-          <div class="w-5/6 rounded-3xl  mr-3 ml-3 border-2 border-sky-600 ">
+          <div className="w-5/6 rounded-3xl  mr-3 ml-3 border-2 border-sky-600 ">
             <div className=" flex mb-4 h-80 ">
               {props.switchType === "text" && (
                 <textarea
-                  readOnly
-                  value={result}
-                  id="idTextarea"
-                  className=" w-full textarea rounded-t-3xl  rounded-b-none    resize-none  "
+                readOnly
+                value={result}
+                id="idTextarea"
+                className=" w-full textarea rounded-t-3xl  rounded-b-none    resize-none  "
                 ></textarea>
-              )}
+                )}
               {props.switchType === "file" && (
-                <textarea
-                  readOnly
-                  id="idTextarea"
-                  className=" w-full textarea rounded-t-3xl  rounded-b-none  resize-none  "
-                ></textarea>
+                <>
+             { localStorage.getItem('show') === 'true' &&(
+                           <p>yes</p>
+                          )}</>
               )}
             </div>
             <div className="flex">
@@ -153,6 +126,7 @@ function Panel(props) {
           </div>
         </div>
       </div>
+     
     </>
   );
 }

@@ -135,7 +135,7 @@ const Navbar = () => {
                   <img src={dark} alt="" className="w-6 h-6 ml-2" />
                   <button
                     data-toggle-theme="night,cupcake"
-                    data-act-class="ACTIVECLASS"
+                    data-act-className="ACTIVECLASS"
                     className="mt-1"
                   >
                     <input

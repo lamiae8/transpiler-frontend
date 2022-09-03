@@ -44,7 +44,7 @@ function About() {
           <span className="text-sky-600">Why Us ?</span>
         </p>
 
-        <ul class="list-none text-center p-4">
+        <ul className="list-none text-center p-4">
           <li className="flex">
             <div className="rounded-full border-4 border-sky-600 bg-sky-600 w-12 h-12 text-white text-2xl">
               1
