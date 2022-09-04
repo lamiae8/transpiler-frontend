@@ -7,30 +7,30 @@ import DragDropFile from "./DragDropFile";
 import copyIcon from "../images/icons8-copy-64.png";
 import downloadIcon from "../images/icons8-downloading-updates-64.png";
 import deployIcon from "../images/icons8-blockchain-technology-64.png";
-
-
+// import { UploadFile } from "./DragDropFile";
 
 function Panel(props) {
   const [result, setResult] = useState();
   const [text, setText] = useState("");
   const [clicked, setClicked] = useState(false);
-
+  const [canDownload, setCanDownload] = useState(false);
   const createContract = () => {
- setClicked(true);
+    setClicked(true);
+    setCanDownload(false)
   };
   //const API="http://localhost:8080/"
-  const API = "http://18.134.130.237/"; //AWS INSTANCE
-
-
+  const API = "http://18.170.43.93/"; //AWS INSTANCE
 
   useEffect(() => {
-   
+    setCanDownload(false)
+  }, []);
+
+  useEffect(() => {
     if (text) {
       console.log("-----------CHANGED CHANGED-------------");
       axios
         .post(API + "transpileText", { text })
         .then((res) => {
-
           console.log(res.data);
           setResult(res.data);
         })
@@ -41,8 +41,6 @@ function Panel(props) {
       setResult("");
     }
   }, [text]);
-
-console.log('show '+localStorage.getItem('show'))
 
 
   return (
@@ -70,13 +68,13 @@ console.log('show '+localStorage.getItem('show'))
                 placeholder="Copy and past your code here..."
                 // onChange={transpileText}
                 onChange={(event) => setText(event.target.value)}
-                ></textarea>
+              ></textarea>
             </div>
           )}
 
           {props.switchType === "file" && (
             <div className=" cursor-pointer ml-3 mr-3 w-5/6 h-full panelchild border-2 border border-sky-600 rounded-3xl">
-              <DragDropFile clicked={clicked}  />
+              <DragDropFile setCanDownload={setCanDownload} clicked={clicked} />
             </div>
           )}
 
@@ -86,17 +84,14 @@ console.log('show '+localStorage.getItem('show'))
             <div className=" flex mb-4 h-80 ">
               {props.switchType === "text" && (
                 <textarea
-                readOnly
-                value={result}
-                id="idTextarea"
-                className=" w-full textarea rounded-t-3xl  rounded-b-none    resize-none  "
+                  readOnly
+                  value={result}
+                  id="idTextarea"
+                  className=" w-full textarea rounded-t-3xl  rounded-b-none    resize-none  "
                 ></textarea>
-                )}
+              )}
               {props.switchType === "file" && (
-                <>
-             { localStorage.getItem('show') === 'true' &&(
-                           <p>yes</p>
-                          )}</>
+                <>{canDownload && <p>yes</p>}</>
               )}
             </div>
             <div className="flex">
@@ -113,7 +108,10 @@ console.log('show '+localStorage.getItem('show'))
                 </button>
               )}
               {props.switchType === "file" && (
-                <button onClick={createContract} className=" flex ml-80 w-28 h-8 pl-1 rounded border border-dashed border-sky-600  ">
+                <button
+                  onClick={createContract}
+                  className=" flex ml-80 w-28 h-8 pl-1 rounded border border-dashed border-sky-600  "
+                >
                   <img src={downloadIcon} alt="" className=" w-7 " /> Download
                 </button>
               )}
@@ -126,7 +124,7 @@ console.log('show '+localStorage.getItem('show'))
           </div>
         </div>
       </div>
-     
+      {/* <UploadFile /> */}
     </>
   );
 }

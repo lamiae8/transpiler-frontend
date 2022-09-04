@@ -1,53 +1,41 @@
 import axios from "axios";
-import React, { useEffect,useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FileUploader } from "react-drag-drop-files";
 import { saveAs } from "file-saver";
 import fileimg from "../images/icons8-fichier-64.png";
 import { data } from "autoprefixer";
 
-
-
 //const API="http://localhost:8080/"
-const API = "http://18.134.130.237/"; //AWS INSTANCE
+const API = "http://18.170.43.93/"; //AWS INSTANCE
 var y = "";
 
-const fileTypes = ["alfa"];
-const uploadFile = (File) => {
-  const data = new FormData();
-  data.append("file", File);
-  axios.post(API + "uploadFileAPI", data).then((res) => {
-    // then print response status
-    console.log(res.data);
-    //createContract(res.data)
-    y = res.data;
-    console.log(y);
-       
-    localStorage.setItem('show' , true);
-    console.log('final show:'+localStorage.getItem('show'))
-  });
-};
-
-
 function DragDropFile(props) {
- 
-  useEffect(()=>{
-    localStorage.setItem('show', false)
-  });
 
 
+  const fileTypes = ["alfa"];
+  const UploadFile = (File) => {
+    const data = new FormData();
+    data.append("file", File);
+    axios.post(API + "uploadFileAPI", data).then((res) => {
+      // then print response status
+      console.log(res.data);
+      //createContract(res.data)
+      y = res.data;
+      console.log(y);
+      props.setCanDownload(true)
+    });
+  };
 
- 
-    if (props.clicked == true){
+  if (props.clicked === true) {
     const blob = new Blob([y], { type: "text/plain;charset=utf-8" });
     saveAs(blob, "result/output.sol");
-    }
- 
-    
+  }
+
   const [file, setFile] = useState(null);
   const handleChange = (file) => {
     // console.log(file)
     setFile(file);
-    uploadFile(file);
+    UploadFile(file);
   };
   const chidrenElem = (
     <>
@@ -68,8 +56,8 @@ function DragDropFile(props) {
           ></path>
         </svg>
         <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
-          <span className="font-semibold">Click to upload</span> or drag and drop
-          your file
+          <span className="font-semibold">Click to upload</span> or drag and
+          drop your file
         </p>
         <p className="text-xs text-gray-500 dark:text-gray-400">(.alfa)</p>
         <br />
@@ -88,8 +76,6 @@ function DragDropFile(props) {
         types={fileTypes}
       />
     </>
-
-
   );
 }
 
