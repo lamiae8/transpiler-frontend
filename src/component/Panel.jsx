@@ -91,7 +91,7 @@ function Panel(props) {
                 ></textarea>
               )}
               {props.switchType === "file" && (
-                <>{canDownload && <p>Your file is ready you ca download it</p>}</>
+                <>{canDownload && <p>Your file is ready to download </p>}</>
               )}
             </div>
             <div className="flex">
