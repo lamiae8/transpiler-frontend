@@ -20,7 +20,7 @@ function Panel(props) {
     setCanDownload(false)
   };
   //const API="http://localhost:8080/"
-  const API = "http://3.8.234.85/"; //AWS INSTANCE
+  const API = "http://18.170.2.144/"; //AWS INSTANCE
 
   useEffect(() => {
     setCanDownload(false)
@@ -51,35 +51,35 @@ const submitText= () =>{
 
   return (
     <>
-      <div className=" panel  border-2 border-sky-600 w-full  ">
-        <div className="flex h-1/6 title right-2 ml-8">
-         <div className="w-3/6 flex ">
-          <img src={textIcon} alt="" className=" h-14" />
-          <div className="   text-xl text-bold text-sky-700 m-4 ">
+      <div className=" Ml:m-auto Ml:mt-8  panel Ml:h-96 border-2 border-sky-600 relative  ">
+        <div className=" flex Ml:inline-block title right-2 ">
+         <div className="w-3/6 flex lg:w-full Ml:pb-0 mt-1 Ml:my-0 ml-4 Ml:ml-6">
+          <img src={textIcon} alt="" className=" h-14 sm:h-6" />
+          <div className=" md:text-sm md:m-1 text-xl text-bold text-sky-700 m-3 ">
             Access control policies
           </div>
         </div>
-        <div className="w-1/6"></div>
-          <div className="w-3/6 flex">
-          <img src={contractIcon} alt="" className="  h-10 mt-2" />
-          <div className=" text-xl text-bold  text-sky-700  panelchild ">
+        <div className="w-1/6 "></div>
+          <div className="w-3/6 h-1/6 mt-3 Ml:mt-0 flex md:w-full Ml:absolute Ml:bottom-28  Ml:left-6">
+          <img src={contractIcon} alt="" className="  h-10 sm:h-5  " />
+          <div className=" md:text-sm ml-4 mt-1 text-xl text-bold  text-sky-700  panelchild ">
             Smart contract
           </div>
           </div>
 
         </div>
 
-        <div className="flex-none w-fit md:w-full sm:flex h-5/6 p-1 sm:p-1">
+        <div className=" w-full mt-4 sm:mt-0 sm:mb-0 flex Ml:inline-block h-5/6  p-1 ">
           {/* panel to show */}
-          <div className="ml-auto sm:ml-0 sm:mb-2 w-full  md:w-3/5  static rounded-3xl   border-2 border-sky-600 ">
+          <div className=" w-3/5 w-full Ml:mt-0 Ml:w-full static rounded-3xl   border-2 border-sky-600 ">
           {props.switchType === "text" && (
             <>
        {/*     <div className="w-5/6 flex panelchild mr-3 ml-3 border-2 border-sky-600"> 
        <div className=" w-5/6 rounded-3xl  mr-3 ml-3 border-2 border-sky-600 ">*/}
-            <div className=" h-52 sm:h-80 h-flex h-fit ">
+            <div className=" h-flex  Ml:h-36 h-fit relative">
               <textarea
               id="textarea"
-                className=" h-44 sm:h-80 w-full textarea rounded-t-3xl resize-none rounded-b-none "
+                className=" h-80 Ml:h-28 w-full  Ml:text-sm textarea rounded-t-3xl resize-none rounded-b-none "
                 placeholder="Copy and past your code here..."
                 // onChange={transpileText}
                // onChange={(event) => setText(event.target.value)}
@@ -103,37 +103,37 @@ const submitText= () =>{
           
           )}
           </div>
-          <img className=" w-0.5/5 place-self-center h-8 w-8" src={fleche} />
+          <img className=" Ml:rotate-90 Ml:my-0  Ml:mx-auto place-self-center h-8 w-8" src={fleche} />
 
-          <div className="mb-3 w-full sm:w-3/5 static rounded-3xl   border-2 border-sky-600 ">
-            <div className="h-flex h-fit  mb-4  ">
+          <div className=" w-3/5 w-full Ml:w-full Ml:mt-4 static rounded-3xl   border-2 border-sky-600 ">
+            <div className="h-flex  Ml:h-36  h-fit relative  ">
               {props.switchType === "text" && (
                 <textarea
                   readOnly
                   value={result}
                   id="idTextarea"
-                  className=" w-full h-80 textarea rounded-t-3xl  rounded-b-none    resize-none  "
+                  className="  w-full h-80 Ml:h-28 Ml:text-sm textarea rounded-t-3xl  rounded-b-none    resize-none  "
                 ></textarea>
               )}
                {props.switchType === "file" && (
                 <>{!canDownload && 
                  
-                  <p className=" flex w-full flex-col  h-80  justify-center items-center  text-md "></p>}
+                  <p className=" flex w-full flex-col  h-80 Ml:h-28  justify-center items-center  text-md "></p>}
                   </>
                   
               )}
               {props.switchType === "file" && (
                 <>{canDownload && 
                  
-                  <p className=" flex w-full flex-col  h-80  justify-center items-center  text-md "> <button onClick={createContract} ><img src={downloadIcon} alt="" className=" " /></button>Your file is ready to download!! </p>}
+                  <p className=" flex w-full flex-col  h-80  Ml:h-28  justify-center items-center text-center  text-md sm:text-sm "> <button onClick={createContract} ><img src={downloadIcon} alt="" className=" " /></button>Your file is ready to download!! </p>}
                   </>
                   
               )}
-            <div className=" w-flex flex  absolute relative">
+            <div className=" w-flex flex absolute relative">
               {props.switchType === "text" && (
           
                 <button
-                  className=" absolute right-32 flex  w-16  h-6  rounded border border-dashed border-sky-600  "
+                  className=" absolute right-32 sm:right-24 flex  w-16  h-6  rounded border border-dashed border-sky-600  "
                   onClick={() => {
                     navigator.clipboard.writeText(
                       document.getElementById("idTextarea").value
@@ -146,16 +146,23 @@ const submitText= () =>{
               {props.switchType === "file" && (
                 <button
                   onClick={createContract}
-                  className="absolute right-32  flex  w-28 pl-2  rounded border border-dashed border-sky-600  "
+                  className="absolute right-32 sm:right-20   flex sm:inline-block Ml:flex  w-28  Ml:w-24 sm:w-20 sm:text-sm   Ml:h-6  sm:h-9   sm:pl-0 pl-2   rounded border border-dashed border-sky-600  "
                 >
-                  <img src={downloadIcon} alt="" className=" w-5 " /> Download
+                  <img src={downloadIcon} alt="" className=" w-5 sm:w-4 sm:ml-8 Ml:ml-2 " /> Download
                 </button>
               )}
-
-              <button className=" absolute right-8  flex  w-20 pl-1 h-6  rounded border border-dashed border-indigo-500  ">
+              {props.switchType === "file" && (
+              <button className=" absolute right-8 sm:right-2 flex sm:inline-block Ml:flex  w-20 sm:w-16  pl-1 Ml:pl-0 Ml:h-6  sm:h-9 sm:text-sm  rounded border border-dashed border-indigo-500  ">
                 {" "}
-                <img src={deployIcon} className="w-5" /> Deploy
+                <img src={deployIcon} className="w-5 sm:w-4 sm:ml-5 Ml:ml-0" /> Deploy
               </button>
+              )}
+              {props.switchType === "text" && (
+                 <button className=" absolute right-8 sm:right-2 flex w-20 pl-1   sm:text-sm  rounded border border-dashed border-indigo-500  ">
+                 {" "}
+                 <img src={deployIcon} className="w-5 " /> Deploy
+               </button>
+              )}
             </div>
             </div>
           </div>

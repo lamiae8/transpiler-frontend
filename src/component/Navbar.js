@@ -68,14 +68,14 @@ const Navbar = () => {
     <>
       <Disclosure
         as="nav"
-        className=" border border-b-1 border-t-0 border-r-0 border-l-0 "
+        className="border border-b-1 border-t-0 border-r-0 border-l-0 "
         data-theme=""
       >
         {({ open }) => (
           <>
-            <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+            <div className="max-w-7xl  mx-auto px-2 sm:px-6 lg:px-8">
               <div className="relative flex items-center justify-between h-16">
-                <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
+                <div className=" absolute inset-y-0 left-0 flex items-center hidden sm:block ">
                   {/* Mobile menu button*/}
                   <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                     <span className="sr-only">Open main menu</span>
@@ -86,23 +86,23 @@ const Navbar = () => {
                     )}
                   </Disclosure.Button>
                 </div>
-                <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
+                <div className=" flex-1 flex Ml:items-center Ml:justify-center items-stretch justify-start Ms:ml-8">
                   <Link to="/">
                     {" "}
-                    <div className="flex-shrink-0 flex items-center">
+                    <div className="flex-shrink-0 flex items-center sm:ml-8 Ml:ml-4 sm:w-8">
                       <img
-                        className="block lg:hidden h-12 w-auto"
+                        className="block h-12  sm:h-10  "
                         src={logo}
                         alt="Workflow"
                       />
-                      <img
+                    {/*   <img
                         className="hidden lg:block h-12 w-auto"
                         src={logo}
                         alt="Workflow"
-                      />
+                      />*/}
                     </div>
                   </Link>
-                  <div className="hidden sm:block sm:ml-6">
+                  <div className="block sm:hidden sm:mr-6">
                     <div className="flex space-x-4">
                       {navigation.map((item) => (
                         <a
@@ -127,12 +127,12 @@ const Navbar = () => {
 
                   <button
                     onClick={connectWallet}
-                    className=" py-2 px-4 rounded bg-gradient-to-r from-blue-800  to-pink-400  text-white font-bold text-sm"
+                    className=" sm:w-28 h-8 sm:h-6 sm:text-xs font-light sm:py-0 sm:px-0 py-2 px-4 rounded bg-gradient-to-r from-blue-800  to-pink-400  text-white  text-sm"
                   >
                     Connect Wallet
                   </button>
 
-                  <img src={dark} alt="" className="w-6 h-6 ml-2" />
+                  <img src={dark} alt="" className="sm:w-4 sm:h-4 w-6 h-6 ml-2" />
                   <button
                     data-toggle-theme="night,cupcake"
                     data-act-className="ACTIVECLASS"
@@ -140,16 +140,16 @@ const Navbar = () => {
                   >
                     <input
                       type="checkbox"
-                      className="toggle toggle-primary"
+                      className="toggle toggle-primary sm:w-10 sm:h-4"
                     ></input>
                   </button>
-                  <img src={light} alt="" className="w-6 h-6 " />
+                  <img src={light} alt="" className="sm:w-5 sm:h-5  w-6 h-6  " />
                 </div>
               </div>
             </div>
 
-            <Disclosure.Panel className="sm:hidden">
-              <div className="px-2 pt-2 pb-3 space-y-1">
+            <Disclosure.Panel className=" hidden sm:block ">
+              <div className="px-2 pt-2 pb-3 space-y-0">
                 {navigation.map((item) => (
                   <Disclosure.Button
                     key={item.name}
@@ -158,8 +158,8 @@ const Navbar = () => {
                     className={classNames(
                       item.current
                         ? "bg-gray-900 text-white"
-                        : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                      "block px-3 py-2 rounded-md text-base font-medium"
+                        : "text-gray-400 hover:bg-gray-700 hover:text-white",
+                      "block px-3 py-1 rounded-md text-sm font-medium"
                     )}
                     aria-current={item.current ? "page" : undefined}
                   >

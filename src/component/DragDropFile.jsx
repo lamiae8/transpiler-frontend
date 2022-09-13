@@ -6,7 +6,7 @@ import fileimg from "../images/icons8-fichier-64.png";
 import { data } from "autoprefixer";
 
 //const API="http://localhost:8080/"
-const API = "http://3.8.234.85/"; //AWS INSTANCE
+const API = "http://18.170.2.144/"; //AWS INSTANCE
 var y = "";
 
 function DragDropFile(props) {
@@ -39,10 +39,10 @@ function DragDropFile(props) {
   };
   const chidrenElem = (
     <>
-      <div className="flex flex-col justify-center items-center pt-5 pb-6 cursor-pointer h-96 ">
+      <div className="flex flex-col justify-center  items-center pt-5 pb-6  cursor-pointer h-96 Ml:h-36 Ml:pb-0 md:items-center  sm:w-full ">
         <svg
           aria-hidden="true"
-          className="mb-3 w-10 h-10 text-gray-400"
+          className="mb-3 w-10 h-10 place-self-center text-gray-400"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -55,7 +55,7 @@ function DragDropFile(props) {
             d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
           ></path>
         </svg>
-        <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
+        <p className="mb-2 md:ml-4 text-sm text-gray-500 dark:text-gray-400">
           <span className="font-semibold">Click to upload</span> or drag and
           drop your file
         </p>

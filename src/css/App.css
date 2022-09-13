@@ -12,10 +12,15 @@
 
 .panel{
    width: 90%; 
-   margin: auto;
+   margin: auto; 
    border-radius: 25px;
    height: 455px; 
 
+
+}
+.panel-s{
+  
+  height:200px;
 }
 .panelchild{
     border-radius: 25px;
@@ -26,7 +31,7 @@
   font-family: 'Dancing Script', cursive;
 }
 .textarea{
-    border: solid 20px transparent; 
+  border: solid 20px transparent;
     font-size: 15px;
    
 }
