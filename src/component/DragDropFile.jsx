@@ -5,18 +5,19 @@ import { saveAs } from "file-saver";
 import fileimg from "../images/icons8-fichier-64.png";
 import { data } from "autoprefixer";
 
-//const API="http://localhost:8080/"
-const API = "http://18.170.2.144/"; //AWS INSTANCE
+//const API= "http://localhost:8080/"
+const API = process.env.API_URL 
+//const API = "http://18.170.2.144/"; //AWS INSTANCE
 var y = "";
 
 function DragDropFile(props) {
 
-
+console.log(API);
   const fileTypes = ["alfa"];
   const UploadFile = (File) => {
     const data = new FormData();
     data.append("file", File);
-    axios.post(API + "uploadFileAPI", data).then((res) => {
+    axios.post("uploadFileAPI", data).then((res) => {
       // then print response status
       console.log(res.data);
       //createContract(res.data)

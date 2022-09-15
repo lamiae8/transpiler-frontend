@@ -20,7 +20,8 @@ function Panel(props) {
     setCanDownload(false)
   };
   //const API="http://localhost:8080/"
-  const API = "http://18.170.2.144/"; //AWS INSTANCE
+  const API = process.env.API_URL 
+  //const API = "http://18.170.2.144/"; //AWS INSTANCE
 
   useEffect(() => {
     setCanDownload(false)
@@ -31,7 +32,7 @@ const submitText= () =>{
   if(text){
     console.log("-----------CHANGED CHANGED-------------");
     axios
-      .post(API + "transpileText", { text })
+      .post("transpileText", { text })
       .then((res) => {
         console.log(res.data);
         setResult(res.data);
