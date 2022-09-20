@@ -56,7 +56,7 @@ const Navbar = () => {
       // setIsConnected(prevConnected=>{!prevConnected? console.log("connected with adress: " + accountAddress) : console.log("not connected"); return !prevConnected});
       {
         isConnected
-          ? alert("connected with adress: " + accountAddress)
+          ? alert("connected with address: " + accountAddress)
           : console.log("not connected");
       }
     } catch (error) {
